@@ -1,0 +1,16 @@
+
+
+.success-msg {
+    margin: 20px;
+    margin-top: 0px;
+    padding: 10px;
+    border-radius: 3px 3px 3px 3px;
+    color: #270;
+    background-color: rgba(223, 242, 191, 0.719);
+  }
+
+  .btnAdd {
+    margin: 20px;
+    margin-right: 0px;
+    float: right;
+  }

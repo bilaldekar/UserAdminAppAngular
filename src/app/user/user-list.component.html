@@ -1,0 +1,72 @@
+<div class="container-fluid body">
+  <mat-toolbar color="primary" style="height: 60px;">
+    <mat-icon class="mat-18" style="margin-right: 6px">person</mat-icon>
+    <span class="flex-fill" style="font-size: 1.5rm;margin-left: 5px;">
+      User Administraion App
+    </span>
+  </mat-toolbar>
+
+  <mat-card>
+    <div class="tableDiv">
+      <mat-card class="tableHeader">
+        <div class="tableRow row">
+          <div class="col">
+            <span>User Name </span>
+          </div>
+          <div class="col">
+            <span>First Name </span>
+          </div>
+          <div class="col">
+            <span>Last Name </span>
+          </div>
+          <div class="col">
+            <span>Email </span>
+          </div>
+          <div class="col">
+            <span>Actions </span>
+          </div>
+        </div>
+      </mat-card>
+
+      <mat-card style="padding:0px;" *ngFor="let s of user_list | paginate: { itemsPerPage: 10, currentPage: page }">
+        <div class="tableRow row ">
+          <div class="col operation">
+            <span><a (click)="openDialog('show', s)"><u>  {{ s.userUserName}}  </u></a></span>
+          </div>
+          <div class="col operation">
+            <span>  {{ s.userFirstName}}  </span>
+          </div>
+          <div class="col operation">
+            <span>{{ s.userLastName}} </span>
+          </div>
+          <div class="col operation">
+            <span>{{ s.userEmail}} </span>
+          </div>
+          <div class="col">            
+            <button mat-button color="warn" (click)="openDialog('edit', s)">Edit User</button>
+
+            <button mat-icon-button  (click)="openConfirmDialog(s)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+
+      <div class="emptyResult">
+        <span *ngIf="user_list.length == 0">
+          No users found.
+        </span>
+      </div>
+
+      <div class="paginator">
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="row btnAdd">
+    <button mat-raised-button (click)="openDialog('add', null)" title='add new user'>
+      <mat-icon>done</mat-icon> Add User
+    </button>
+  </div>
+</div>

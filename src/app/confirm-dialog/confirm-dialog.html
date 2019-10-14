@@ -1,0 +1,18 @@
+
+<div class="confirmDiv">
+  <div style="margin: 20px">
+    <h1 mat-dialog-title>Confirmation</h1>
+    <div mat-dialog-content>
+      <p>Confirm deactivation of user?</p>
+    </div>
+  </div>
+  <div mat-dialog-actions style="float: right;">
+    <button mat-button cdkFocusInitial [mat-dialog-close]="data" (click)="onYesClick()" mat-raised-button
+      color="primary">
+      <mat-icon>done</mat-icon>Yes
+    </button>
+    <button mat-button  (click)="onNoClick()" mat-raised-button color="warn">
+      <mat-icon>clear</mat-icon> No
+    </button>
+  </div>
+</div>

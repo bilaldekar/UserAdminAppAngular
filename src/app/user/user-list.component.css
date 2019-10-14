@@ -1,0 +1,57 @@
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.tableDiv {
+  height: 520px;
+  position: relative;
+  border: 1px solid lavender;
+}
+
+.tableHeader {
+  padding: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #2196f3;
+  color: white;
+  font-weight: bold;
+}
+
+.tableRow {
+  margin: 1px;
+  padding: 0px;
+  border-bottom: black;
+}
+
+.operation {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.btnOps{
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: transparent;
+}
+
+.btnAdd {
+  margin: 20px;
+  margin-right: 0px;
+  float: right;
+}
+
+.emptyResult {
+  margin: 20px;
+  color: darkgray;
+}
+
+.paginator {
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  left: 50%;
+  right: 25px;
+  margin-left: -150px;
+}
