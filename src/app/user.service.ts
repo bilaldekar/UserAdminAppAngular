@@ -8,8 +8,8 @@ export class UserService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getActiveUsers() {
-        return this.httpClient.get('http://localhost:8888/api/users');
+    getUsers(active : boolean) {
+        return this.httpClient.get('http://localhost:8888/api/users?state=' + active);
     }
 
     addUser(user: User): Observable<object> {
@@ -17,12 +17,6 @@ export class UserService {
     }
 
     editUser(user : User) : Observable<object> {
-        // const httpOptions = {
-        //     headers: new HttpHeaders({
-        //       'Content-Type': 'application/json'
-        //     }),
-        //     params: null
-        //   };
         return this.httpClient.put('http://localhost:8888/api/users/' + user.userId, user);
     }
 }

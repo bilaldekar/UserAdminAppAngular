@@ -1,7 +1,7 @@
 <h1 mat-dialog-title style="color: darkslategray">User</h1>
 <mat-tab-group>
   <mat-tab label="User Information">
-    <form (ngSubmit)="add()" [formGroup]="userForm">
+    <form (ngSubmit)="validate()" [formGroup]="userForm">
       <mat-card>
         <div class="row">
           <div class="success-msg col-10" *ngIf="added">
@@ -70,11 +70,7 @@
         <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added">
           <mat-icon>done</mat-icon> Validate
         </button>
-        <button mat-raised-button (click)="terminer()" [mat-dialog-close]="data" color="primary" *ngIf="added"
-          color="warn" style="margin-left: 5px;">
-          <mat-icon>clear</mat-icon> Terminer
-        </button>
-        <button mat-raised-button (click)="close()" color="primary" color="warn" *ngIf="!added"
+        <button mat-raised-button  [mat-dialog-close]="data.dialogUser" color="primary" color="warn" 
           style="margin-left: 5px;">
           <mat-icon>clear</mat-icon> Close
         </button>

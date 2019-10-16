@@ -6,6 +6,24 @@
     </span>
   </mat-toolbar>
 
+  <!-- <mat-card>
+      <mat-card>
+      <mat-button-toggle-group [(value)]="selectedValue" #group="matButtonToggleGroup" style=" text-align: left;">
+        <mat-button-toggle *ngFor="let item of toggleOptions;" (change)="selectionChanged($event)" [value]="item">
+          {{item}}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-card>
+    <mat-card>
+      <mat-radio-group [(value)]="selectedValue">
+        <mat-radio-button *ngFor="let item of toggleOptions;" (change)="selectionChanged($event)" [value]="item">
+          {{item}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+  --> 
+
+
   <mat-card>
     <div class="tableDiv">
       <mat-card class="tableHeader">
@@ -29,12 +47,12 @@
       </mat-card>
 
       <mat-card style="padding:0px;" *ngFor="let s of user_list | paginate: { itemsPerPage: 10, currentPage: page }">
-        <div class="tableRow row ">
+        <div class="tableRow row">
           <div class="col operation">
-            <span><a (click)="openDialog('show', s)"><u>  {{ s.userUserName}}  </u></a></span>
+            <span><a (click)="openDialog('show', s)"><u> {{ s.userUserName}} </u></a></span>
           </div>
           <div class="col operation">
-            <span>  {{ s.userFirstName}}  </span>
+            <span> {{ s.userFirstName}} </span>
           </div>
           <div class="col operation">
             <span>{{ s.userLastName}} </span>
@@ -42,10 +60,9 @@
           <div class="col operation">
             <span>{{ s.userEmail}} </span>
           </div>
-          <div class="col">            
+          <div class="col">
             <button mat-button color="warn" (click)="openDialog('edit', s)">Edit User</button>
-
-            <button mat-icon-button  (click)="openConfirmDialog(s)">
+            <button mat-icon-button (click)="openConfirmDialog(s)" [disabled]="!s.userActive">
               <mat-icon>close</mat-icon>
             </button>
           </div>

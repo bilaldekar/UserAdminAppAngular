@@ -5,7 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { UserListComponent } from "./user/user-list.component";
 
-import { MatCardModule, MatPaginatorModule, MatIconModule, MatToolbarModule, MatTableModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatGridListModule, MatTabsModule } from "@angular/material";
+import { MatCardModule, MatPaginatorModule, MatIconModule, MatToolbarModule, MatTableModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatGridListModule, MatTabsModule, MatButtonToggleModule, MatRadioModule } from "@angular/material";
 import { NgxPaginationModule } from "ngx-pagination";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -33,8 +33,9 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
     MatInputModule,
     MatGridListModule,
     MatTabsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    MatButtonToggleModule,
+    MatRadioModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent],

@@ -1,8 +1,5 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
-  MatTableDataSource,
-  MatPaginator,
-  MatSort,
   MatDialog
 } from "@angular/material";
 import { User } from "./user";
@@ -21,73 +18,52 @@ export class UserListComponent implements OnInit {
   user_list: User[] = [];
   page: number = 1;
 
+  // title = 'button-toggle-app';
+  // selectedValue : String = "Active"
+  // toggleOptions: Array<String> = ["Active", "Desactive"];
+
+  // selectionChanged(item) {
+  //   this.ngOnInit();
+  // }
+
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getActiveUsers().subscribe((res: any) => {
-      if (res) {
-        this.user_list = res;
-      }
-    }, (err) => {
-      alert('Faild to load data');
-      this.user_list = [];
-    });
+    this.userService.getUsers(true)//this.selectedValue ==  "Active" ? true : (this.selectedValue == "Desactive" ? false : true))
+      .subscribe((res: any) => {
+        if (res) {
+          this.user_list = res;
+        }
+      }, (err) => {
+        alert('Faild to load data');
+        this.user_list = [];
+      });
   }
 
   openDialog(operation: string, user: User) {
-    var dialogRef = null;
     if (operation == 'add') {
-      dialogRef = this.dialog.open(AddUserComponent, {
-        width: "800px",
-        data: { firstName: null, lastName: "", email: "", userName: "", operation: operation },
-        disableClose: true
-      });
+      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true };
     }
 
-    if (operation == 'edit') {
-      dialogRef = this.dialog.open(AddUserComponent, {
-        width: "800px",
-        data: { firstName: user.userFirstName, lastName: user.userLastName, email: user.userEmail, userName: user.userUserName, operation: operation },
-        disableClose: true
-      });
-    }
-
-    if (operation == 'show') {
-      dialogRef = this.dialog.open(AddUserComponent, {
-        width: "800px",
-        data: { firstName: user.userFirstName, lastName: user.userLastName, email: user.userEmail, userName: user.userUserName, operation: operation },
-        disableClose: true
-      });
-    }
+    var dialogRef = this.dialog.open(AddUserComponent, {
+      width: "800px",
+      data: {
+        dialogUser: user,
+        operation: operation
+      },
+      disableClose: true
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        if (operation == 'add') {
-          var newUser = { userFirstName: result.firstName, userLastName: result.lastName, userUserName: result.userName, userEmail: result.email, userActive: true };
-          this.userService.addUser(newUser).subscribe((result: any) => {
-            if (result) {
-              this.user_list.push(result);
-            }
-          }, (err) => {
-            alert('Faild to add user');
-          });
-        }
-
-        if (operation == 'edit') {
-          user.userFirstName = result.firstName;
-          user.userLastName = result.lastName;
-          user.userUserName = result.firstName + '.' + result.lastName;
-          user.userEmail = result.email;
-          user.userActive = true;
-
-          console.log('edit operation ' + result.firstName);
-
-
-          this.userService.editUser(user).subscribe((editResult) => {}, 
-          (err) => {
-            alert('Faild to edit user');
-          });
-        }
+        this.userService.getUsers(true).subscribe((res: any) => {
+          if (res) {
+            this.user_list = res;
+          }
+        }, (err) => {
+          alert('Faild to load data');
+          this.user_list = [];
+        });
       }
     });
   }
