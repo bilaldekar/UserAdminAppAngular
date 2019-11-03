@@ -9,7 +9,7 @@ import { MatCardModule, MatPaginatorModule, MatIconModule, MatToolbarModule, Mat
 import { NgxPaginationModule } from "ngx-pagination";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
@@ -20,6 +20,7 @@ import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatPaginatorModule,
     NgxPaginationModule,

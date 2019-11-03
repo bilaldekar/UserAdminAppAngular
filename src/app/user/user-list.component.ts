@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  MatDialog
-} from "@angular/material";
+import { MatDialog } from "@angular/material";
 import { User } from "./user";
 
 import { AddUserComponent } from "../add-user/add-user.component";
@@ -18,18 +16,18 @@ export class UserListComponent implements OnInit {
   user_list: User[] = [];
   page: number = 1;
 
-  // title = 'button-toggle-app';
-  // selectedValue : String = "Active"
-  // toggleOptions: Array<String> = ["Active", "Desactive"];
+  title = 'button-toggle-app';
+  selectedValue: String = "Active";
+  toggleOptions: Array<String> = ["Active", "Desactive"];
 
-  // selectionChanged(item) {
-  //   this.ngOnInit();
-  // }
+  selectionChanged() {
+    this.ngOnInit();
+  }
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers(true)//this.selectedValue ==  "Active" ? true : (this.selectedValue == "Desactive" ? false : true))
+    this.userService.getUsers(this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true))
       .subscribe((res: any) => {
         if (res) {
           this.user_list = res;

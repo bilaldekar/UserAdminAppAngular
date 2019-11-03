@@ -2,27 +2,20 @@
   <mat-toolbar color="primary" style="height: 60px;">
     <mat-icon class="mat-18" style="margin-right: 6px">person</mat-icon>
     <span class="flex-fill" style="font-size: 1.5rm;margin-left: 5px;">
-      User Administraion App
+      User Administration App
     </span>
   </mat-toolbar>
 
-  <!-- <mat-card>
-      <mat-card>
-      <mat-button-toggle-group [(value)]="selectedValue" #group="matButtonToggleGroup" style=" text-align: left;">
-        <mat-button-toggle *ngFor="let item of toggleOptions;" (change)="selectionChanged($event)" [value]="item">
-          {{item}}
-        </mat-button-toggle>
-      </mat-button-toggle-group>
-    </mat-card>
-    <mat-card>
-      <mat-radio-group [(value)]="selectedValue">
-        <mat-radio-button *ngFor="let item of toggleOptions;" (change)="selectionChanged($event)" [value]="item">
+  <mat-card style="text-align: right;">
+    Filter :
+    <span style="border: 1px solid gray; border-radius: 5px; width: 20%; padding: 10px;padding-left: 50px;">
+      <mat-radio-group [(ngModel)]="selectedValue" (change)="selectionChanged()">
+        <mat-radio-button *ngFor="let item of toggleOptions;" [value]="item" style="margin-right: 2.5em">
           {{item}}
         </mat-radio-button>
       </mat-radio-group>
-    </mat-card>
-  --> 
-
+    </span>
+  </mat-card>
 
   <mat-card>
     <div class="tableDiv">
