@@ -54,14 +54,7 @@ export class UserListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        this.userService.getUsers(true).subscribe((res: any) => {
-          if (res) {
-            this.user_list = res;
-          }
-        }, (err) => {
-          alert('Faild to load data');
-          this.user_list = [];
-        });
+        this.ngOnInit();
       }
     });
   }
