@@ -13,10 +13,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, UserListComponent, AddUserComponent, ConfirmDialog],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,

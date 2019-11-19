@@ -14,8 +14,7 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="First name" formControlName="firstName"
-                [readonly]="added"
+              <input matInput class="form-control" placeholder="First name" formControlName="firstName" [readonly]="added" (change)="updateUserName()"
                 [ngClass]="{'is-invalid':(userForm.get('firstName').touched || userForm.get('firstName').dirty ) && !userForm.get('firstName').valid}" />
               <!-- <span class="invalid-feedback">
             <span *ngIf="userForm.get('firstName').errors?.required">
@@ -26,13 +25,8 @@
           </div>
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="Last name" formControlName="lastName" [readonly]="added"
+              <input matInput class="form-control" placeholder="Last name" formControlName="lastName" [readonly]="added"  (change)="updateUserName()"
                 [ngClass]="{'is-invalid':(userForm.get('lastName').touched || userForm.get('lastName').dirty ) && !userForm.get('lastName').valid}" />
-              <!-- <span class="invalid-feedback">
-              <span *ngIf="userForm.get('lastName').errors?.required">
-                Please enter a value
-              </span>
-            </span>  -->
             </mat-form-field>
           </div>
         </div>
@@ -42,11 +36,6 @@
             <mat-form-field class="example-full-width container-fluid">
               <input matInput class="form-control" placeholder="Email" formControlName="email" [readonly]="added"
                 [ngClass]="{'is-invalid':(userForm.get('email').touched || userForm.get('email').dirty ) && !userForm.get('email').valid}" />
-              <!-- <span class="invalid-feedback">
-                <span *ngIf="userForm.get('email').errors?.required">
-                  Please enter a value
-                </span>
-              </span>  -->
             </mat-form-field>
           </div>
         </div>
@@ -56,15 +45,17 @@
             <mat-form-field class="example-full-width container-fluid">
               <input matInput class="form-control" placeholder="User Name" formControlName="userName" [readonly]="added"
                 [ngClass]="{'is-invalid':(userForm.get('userName').touched || userForm.get('userName').dirty ) && !userForm.get('userName').valid}" />
-              <!-- <span class="invalid-feedback">
-                <span *ngIf="userForm.get('userName').errors?.required">
-                  Please enter a value
-                </span>
-              </span>  -->
             </mat-form-field>
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="example-full-width container-fluid">
+              <input matInput class="form-control" placeholder="Status" formControlName="active" [(ngModel)]="status" [readonly]="true" />
+            </mat-form-field>
+          </div>
+        </div>
       </mat-card>
     </mat-tab>
 
@@ -73,8 +64,11 @@
   </mat-tab-group>
 
   <div class="row btnAdd">
-    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added">
+    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added" *ngIf="status=='Active'">
       <mat-icon>done</mat-icon> Validate
+    </button>
+    <button mat-raised-button (click)="activate()" title='Activate' style="background-color: gold;margin-left: 5px;" *ngIf="status=='Desactive'">
+      <mat-icon>autorenew</mat-icon> Activate
     </button>
     <button mat-raised-button [mat-dialog-close]="data.dialogUser" color="primary" color="warn"
       style="margin-left: 5px;">
