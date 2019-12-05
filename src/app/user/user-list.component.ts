@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
-import { User } from "./user";
 
 import { AddUserComponent } from "../add-user/add-user.component";
 import { UserService } from '../user.service';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
+import { User, Profile } from '../interfaces';
 
 @Component({
   selector: "app-user-list",
@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUsers(this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true))
-      .subscribe((res: any) => {
+      .subscribe((res: User[]) => {
         if (res) {
           this.user_list = res;
         }
@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
 
   openDialog(operation: string, user: User) {
     if (operation == 'add') {
-      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true };
+      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true, userProfile:null };
     }
 
     var dialogRef = this.dialog.open(AddUserComponent, {

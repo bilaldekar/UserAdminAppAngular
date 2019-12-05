@@ -14,18 +14,15 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="First name" formControlName="firstName" [readonly]="added" (change)="updateUserName()"
+              <input matInput class="form-control" placeholder="First name" formControlName="firstName"
+                [readonly]="added" (change)="updateUserName()"
                 [ngClass]="{'is-invalid':(userForm.get('firstName').touched || userForm.get('firstName').dirty ) && !userForm.get('firstName').valid}" />
-              <!-- <span class="invalid-feedback">
-            <span *ngIf="userForm.get('firstName').errors?.required">
-              Please enter a value
-            </span>
-          </span>   -->
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="Last name" formControlName="lastName" [readonly]="added"  (change)="updateUserName()"
+              <input matInput class="form-control" placeholder="Last name" formControlName="lastName" [readonly]="added"
+                (change)="updateUserName()"
                 [ngClass]="{'is-invalid':(userForm.get('lastName').touched || userForm.get('lastName').dirty ) && !userForm.get('lastName').valid}" />
             </mat-form-field>
           </div>
@@ -52,7 +49,8 @@
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="Status" formControlName="active" [(ngModel)]="status" [readonly]="true" />
+              <input matInput class="form-control" placeholder="Status" formControlName="active" [(ngModel)]="status"
+                [readonly]="true" />
             </mat-form-field>
           </div>
         </div>
@@ -60,14 +58,35 @@
     </mat-tab>
 
     <mat-tab label="Profile">
+      <mat-card>
+        <div class="row">
+          <div class="col-8">
+            <mat-form-field class="example-full-width container-fluid">
+              <input matInput class="form-control" placeholder="Profile" formControlName="profileDescription"
+                [readonly]="added"
+                [ngClass]="{'is-invalid':(userForm.get('profileDescription').touched || userForm.get('profileDescription').dirty ) && !userForm.get('profileDescription').valid}" />
+            </mat-form-field>
+          </div>
+          <!-- <mat-form-field>
+              <mat-label>Profile</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let p of data.profileList" >
+                  {{p.profileDescription}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+        </div>
+      </mat-card>
     </mat-tab>
   </mat-tab-group>
 
   <div class="row btnAdd">
-    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added" *ngIf="status=='Active'">
+    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added"
+      *ngIf="status=='Active'">
       <mat-icon>done</mat-icon> Validate
     </button>
-    <button mat-raised-button (click)="activate()" title='Activate' style="background-color: gold;margin-left: 5px;" *ngIf="status=='Desactive'">
+    <button mat-raised-button (click)="activate()" title='Activate' style="background-color: gold;margin-left: 5px;"
+      *ngIf="status=='Desactive'">
       <mat-icon>autorenew</mat-icon> Activate
     </button>
     <button mat-raised-button [mat-dialog-close]="data.dialogUser" color="primary" color="warn"

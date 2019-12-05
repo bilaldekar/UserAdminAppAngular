@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './user/user';
 import { environment } from 'src/environments/environment';
+import { User } from './interfaces';
 
 @Injectable()
 export class UserService {
@@ -24,4 +24,9 @@ export class UserService {
     editUser(user: User): Observable<object> {
         return this.httpClient.put(this.envUrl + '/users/' + user.userId, user);
     }
+
+    getProfiles() {
+        return this.httpClient.get(this.envUrl + '/profile');
+    }
+
 }

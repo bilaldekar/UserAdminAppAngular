@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
 import { UserService } from '../user.service';
-import { User } from '../user/user';
+import { User, Profile } from '../interfaces';
 
 @Component({
   selector: "app-add-user",
@@ -16,7 +16,9 @@ export class AddUserComponent implements OnInit {
   status: string = '';
 
   constructor(
-    public dialogRef: MatDialogRef<AddUserComponent>, private userService: UserService,
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<AddUserComponent>,
+    private userService: UserService,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA)
     public data: {
@@ -31,10 +33,11 @@ export class AddUserComponent implements OnInit {
       lastName: [{ value: this.data.dialogUser.userLastName, disabled: this.data.operation == 'show' || !this.data.dialogUser.userActive }, [Validators.required]],
       email: [{ value: this.data.dialogUser.userEmail, disabled: this.data.operation == 'show' || !this.data.dialogUser.userActive }, [Validators.required]],
       userName: [{ value: this.data.dialogUser.userUserName, disabled: true }],
-      active: { value: this.data.dialogUser.userActive }
+      active: { value: this.data.dialogUser.userActive },
+      profileDescription: [{ value: this.data.dialogUser.userProfile !=null ? this.data.dialogUser.userProfile.profileDescription : '', disabled: true }]
     });
 
-     (this.data.dialogUser.userActive) ? this.status ='Active' : this.status ='Desactive';
+    (this.data.dialogUser.userActive) ? this.status = 'Active' : this.status = 'Desactive';
   }
 
   validate() {
@@ -44,7 +47,8 @@ export class AddUserComponent implements OnInit {
         userLastName: this.userForm.get("lastName").value,
         userUserName: this.userForm.get("userName").value,
         userEmail: this.userForm.get("email").value,
-        userActive: true
+        userActive: true,
+        userProfile: null
       };
 
       this.userService.addUser(newUser).subscribe((result: any) => {
@@ -63,7 +67,8 @@ export class AddUserComponent implements OnInit {
         userLastName: this.userForm.get("lastName").value,
         userUserName: this.userForm.get("firstName").value + '.' + this.userForm.get("lastName").value,
         userEmail: this.userForm.get("email").value,
-        userActive: true
+        userActive: true,
+        userProfile: null
       };
 
       this.userService.editUser(editUser).subscribe((editResult) => {
@@ -85,7 +90,7 @@ export class AddUserComponent implements OnInit {
   activate() {
     this.userForm.patchValue({ activate: true });
     this.validate();
-    this.status ='Active';
+    this.status = 'Active';
   }
 
   updateUserName() {

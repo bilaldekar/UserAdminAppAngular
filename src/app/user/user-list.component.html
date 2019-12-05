@@ -34,6 +34,9 @@
             <span>Email </span>
           </div>
           <div class="col">
+            <span>Profile </span>
+          </div>
+          <div class="col">
             <span>Actions </span>
           </div>
         </div>
@@ -52,6 +55,9 @@
           </div>
           <div class="col operation">
             <span>{{ s.userEmail}} </span>
+          </div>
+          <div class="col operation">
+            <span>{{ s.userProfile !=null ? s.userProfile.profileDescription : ''}} </span>
           </div>
           <div class="col">
             <button mat-button color="warn" (click)="openDialog('edit', s)">Edit User</button>
