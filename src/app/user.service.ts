@@ -14,7 +14,7 @@ export class UserService {
     }
 
     getUsers(active: boolean) {
-        return this.httpClient.get(this.envUrl + '/users?state=' + active);
+        return this.httpClient.get(this.envUrl + '/users/all/' + active);
     }
 
     addUser(user: User): Observable<object> {
