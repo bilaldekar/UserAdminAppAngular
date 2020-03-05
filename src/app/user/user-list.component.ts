@@ -20,6 +20,11 @@ export class UserListComponent implements OnInit {
   selectedValue: String = "Active";
   toggleOptions: Array<String> = ["Active", "Desactive"];
 
+  firstName : String = null;
+  lastName : String =null;
+  userName : String=null;
+  email : String=null;
+
   selectionChanged() {
     this.ngOnInit();
   }
@@ -27,7 +32,7 @@ export class UserListComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers(this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true))
+    this.userService.getUsers(this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true), this.firstName, this.lastName, this.userName, this.email)
       .subscribe((res: User[]) => {
         if (res) {
           this.user_list = res;

@@ -13,16 +13,19 @@ export class UserService {
         this.envUrl = environment.apiUrl;
     }
 
-    getUsers(active: boolean) {
-        return this.httpClient.get(this.envUrl + '/users/all/' + active);
+    getUsers(active: boolean,   firstName : String,
+        lastname : String,
+        userName : String,
+        email : String) {
+        return this.httpClient.get(this.envUrl + '/users/all/' + active + "/" + firstName + "/" + lastname +"/" + userName + "/" +email);
     }
 
     addUser(user: User): Observable<object> {
-        return this.httpClient.post(this.envUrl + '/users', user);
+        return this.httpClient.post(this.envUrl + '/users/save', user);
     }
 
     editUser(user: User): Observable<object> {
-        return this.httpClient.put(this.envUrl + '/users/' + user.userId, user);
+        return this.httpClient.put(this.envUrl + '/users/edit/' + user.userId, user);
     }
 
     getProfiles() {
