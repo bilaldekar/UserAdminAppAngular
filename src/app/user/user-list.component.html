@@ -8,36 +8,49 @@
 
   <mat-card style="text-align: right;">
     <div class="row">
-      <div class="col-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>First Name</mat-label>
-          <input matInput [(ngModel)]="firstName">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Last Name</mat-label>
-          <input matInput [(ngModel)]="lastName">
-        </mat-form-field>
+      <div class="col-1" style="padding-top: 15px;">
+        Filter By :
+      </div>
+      <div class="col-2">
         <mat-form-field class="example-full-width">
           <mat-label>User Name</mat-label>
-          <input matInput [(ngModel)]="userName">
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="email">
+          <input matInput [(ngModel)]="userName" (change)="filter()" />
         </mat-form-field>
       </div>
+      <div class="col-2">
+        <mat-form-field class="example-full-width">
+          <mat-label>First Name</mat-label>
+          <input matInput [(ngModel)]="firstName" (change)="filter()" />
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <mat-form-field class="example-full-width">
+          <mat-label>Last Name</mat-label>
+          <input matInput [(ngModel)]="lastName" (change)="filter()" />
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input matInput [(ngModel)]="email" (change)="filter()" />
+        </mat-form-field>
+      </div>
+      <!-- <div class="col-">
+        <button mat-raised-button (click)="filter()" title="Filter">
+          <mat-icon>filter</mat-icon> Filter
+        </button>
+      </div>  -->
 
+      <div class="col-3" style="padding-top: 10px;">
+        <span style="border: 1px solid gray; border-radius: 5px; width: 20%; padding: 10px;padding-left: 50px;">
+          <mat-radio-group [(ngModel)]="selectedValue" (change)="selectionChanged()">
+            <mat-radio-button *ngFor="let item of toggleOptions" [value]="item" style="margin-right: 2.5em">
+              {{ item }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </span>
+      </div>
     </div>
-
-    Filter :
-    <span style="border: 1px solid gray; border-radius: 5px; width: 20%; padding: 10px;padding-left: 50px;">
-      <mat-radio-group [(ngModel)]="selectedValue" (change)="selectionChanged()">
-        <mat-radio-button *ngFor="let item of toggleOptions;" [value]="item" style="margin-right: 2.5em">
-          {{item}}
-        </mat-radio-button>
-      </mat-radio-group>
-    </span>
   </mat-card>
 
   <mat-card>
@@ -65,25 +78,32 @@
         </div>
       </mat-card>
 
-      <mat-card style="padding:0px;" *ngFor="let s of user_list | paginate: { itemsPerPage: 10, currentPage: page }">
+      <mat-card style="padding:0px;" *ngFor="
+          let s of user_list | paginate: { itemsPerPage: 10, currentPage: page }
+        ">
         <div class="tableRow row">
           <div class="col operation">
-            <span><a (click)="openDialog('show', s)"><u> {{ s.userUserName}} </u></a></span>
+            <span><a (click)="openDialog('show', s)"><u> {{ s.userUserName }} </u></a></span>
           </div>
           <div class="col operation">
-            <span> {{ s.userFirstName}} </span>
+            <span> {{ s.userFirstName }} </span>
           </div>
           <div class="col operation">
-            <span>{{ s.userLastName}} </span>
+            <span>{{ s.userLastName }} </span>
           </div>
           <div class="col operation">
-            <span>{{ s.userEmail}} </span>
+            <span>{{ s.userEmail }} </span>
           </div>
           <div class="col operation">
-            <span>{{ s.userProfile !=null ? s.userProfile.profileDescription : ''}} </span>
+            <span>{{
+                s.userProfile != null ? s.userProfile.profileDescription : ""
+              }}
+            </span>
           </div>
           <div class="col">
-            <button mat-button color="warn" (click)="openDialog('edit', s)">Edit User</button>
+            <button mat-button color="warn" (click)="openDialog('edit', s)">
+              Edit User
+            </button>
             <button mat-icon-button (click)="openConfirmDialog(s)" [disabled]="!s.userActive">
               <mat-icon>close</mat-icon>
             </button>
@@ -104,7 +124,7 @@
   </mat-card>
 
   <div class="row btnAdd">
-    <button mat-raised-button (click)="openDialog('add', null)" title='add new user'>
+    <button mat-raised-button (click)="openDialog('add', null)" title="add new user">
       <mat-icon>done</mat-icon> Add User
     </button>
   </div>

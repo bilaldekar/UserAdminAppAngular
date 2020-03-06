@@ -20,10 +20,10 @@ export class UserListComponent implements OnInit {
   selectedValue: String = "Active";
   toggleOptions: Array<String> = ["Active", "Desactive"];
 
-  firstName : String = null;
-  lastName : String =null;
-  userName : String=null;
-  email : String=null;
+  firstName: String = null;
+  lastName: String = null;
+  userName: String = null;
+  email: String = null;
 
   selectionChanged() {
     this.ngOnInit();
@@ -32,7 +32,17 @@ export class UserListComponent implements OnInit {
   constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUsers(this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true), this.firstName, this.lastName, this.userName, this.email)
+    this.filter();
+  }
+
+  filter() {
+
+    this.userService.getUsers(
+      this.selectedValue == "Active" ? true : (this.selectedValue == "Desactive" ? false : true),
+      this.firstName == '' ? null : this.firstName,
+      this.lastName == '' ? null : this.lastName,
+      this.userName == '' ? null : this.userName,
+      this.email == '' ? null : this.email )
       .subscribe((res: User[]) => {
         if (res) {
           this.user_list = res;
@@ -45,7 +55,7 @@ export class UserListComponent implements OnInit {
 
   openDialog(operation: string, user: User) {
     if (operation == 'add') {
-      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true, userProfile:null };
+      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true, userProfile: null };
     }
 
     var dialogRef = this.dialog.open(AddUserComponent, {

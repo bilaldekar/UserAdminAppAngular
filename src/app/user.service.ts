@@ -9,15 +9,12 @@ export class UserService {
 
     envUrl = '';
 
-    constructor(private httpClient: HttpClient) { 
+    constructor(private httpClient: HttpClient) {
         this.envUrl = environment.apiUrl;
     }
 
-    getUsers(active: boolean,   firstName : String,
-        lastname : String,
-        userName : String,
-        email : String) {
-        return this.httpClient.get(this.envUrl + '/users/all/' + active + "/" + firstName + "/" + lastname +"/" + userName + "/" +email);
+    getUsers(active: boolean, firstName: String, lastname: String, userName: String, email: String) {
+        return this.httpClient.get(this.envUrl + '/users/all/' + active + "/" + firstName + "/" + lastname + "/" + userName + "/" + email);
     }
 
     addUser(user: User): Observable<object> {
