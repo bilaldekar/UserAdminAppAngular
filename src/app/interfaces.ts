@@ -6,7 +6,7 @@ export interface User {
     userUserName: string;
     userEmail: string;
     userActive: boolean;
-    userProfile : Profile;
+    userProfile? : Profile;
 }
 
 

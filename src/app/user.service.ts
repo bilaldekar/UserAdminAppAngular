@@ -25,6 +25,10 @@ export class UserService {
         return this.httpClient.put(this.envUrl + '/users/edit/' + user.userId, user);
     }
 
+    getUser(id: number) {
+        return this.httpClient.get(this.envUrl + '/users/' + id);
+    }
+
     getProfiles() {
         return this.httpClient.get(this.envUrl + '/profile');
     }

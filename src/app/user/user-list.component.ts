@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
   email: String = null;
 
   selectionChanged() {
-    this.ngOnInit();
+    this.filter();
   }
 
   constructor(public dialog: MatDialog, private userService: UserService) { }
