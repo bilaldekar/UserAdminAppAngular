@@ -1,16 +1,16 @@
 <h1 mat-dialog-title style="color: darkslategray">User</h1>
 
 <form (ngSubmit)="validate()" [formGroup]="userForm">
+  <div class="row">
+    <div class="success-msg col-10" *ngIf="added">
+      <mat-icon style="text-align: center">done</mat-icon>
+      Operation is successfully done.
+    </div>
+  </div>
+
   <mat-tab-group>
     <mat-tab label="User Information">
       <mat-card>
-        <div class="row">
-          <div class="success-msg col-10" *ngIf="added">
-            <mat-icon style="text-align: center">done</mat-icon>
-            Operation is successfully done.
-          </div>
-        </div>
-
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width container-fluid">
@@ -57,31 +57,31 @@
       </mat-card>
     </mat-tab>
 
-    <mat-tab label="Profile">
+    <mat-tab label="Roles">
       <mat-card>
-        <div class="row">
-          <div class="col-8">
-            <mat-form-field class="example-full-width container-fluid">
-              <input matInput class="form-control" placeholder="Profile" formControlName="profileDescription"
-                [readonly]="added"
-                [ngClass]="{'is-invalid':(userForm.get('profileDescription').touched || userForm.get('profileDescription').dirty ) && !userForm.get('profileDescription').valid}" />
-            </mat-form-field>
+        <mat-chip-list>
+          <mat-chip *ngFor="let ur of userRoles" [removable]="removable" (removed)="removeRole(ur)">
+            {{ur.roleDescription}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+
+          <mat-chip (click)="openRoleDialog()" style=" background-color: #F44336;" *ngIf="data.dialogOperation!='show'">
+            Add
+            <mat-icon matChipRemove>add_circle</mat-icon>
+          </mat-chip>
+
+          <div class="emptyResult" *ngIf="data.dialogOperation=='show'">
+            <span *ngIf="userRoles.length == 0">
+              User has no roles.
+            </span>
           </div>
-          <!-- <mat-form-field>
-              <mat-label>Profile</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let p of data.profileList" >
-                  {{p.profileDescription}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field> -->
-        </div>
+        </mat-chip-list>
       </mat-card>
     </mat-tab>
   </mat-tab-group>
 
   <div class="row btnAdd">
-    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added"
+    <button mat-raised-button type="submit" color="primary" [disabled]="!userForm.valid || added || data.dialogOperation=='show'"
       *ngIf="status=='Active'">
       <mat-icon>done</mat-icon> Validate
     </button>

@@ -35,13 +35,7 @@
           <input matInput [(ngModel)]="email" (change)="filter()" />
         </mat-form-field>
       </div>
-      <!-- <div class="col-">
-        <button mat-raised-button (click)="filter()" title="Filter">
-          <mat-icon>filter</mat-icon> Filter
-        </button>
-      </div>  -->
-
-      <div class="col-3" style="padding-top: 10px;">
+      <div class="col-3" style="padding-top: 10px;" class="example-full-width">
         <span style="border: 1px solid gray; border-radius: 5px; width: 20%; padding: 10px;padding-left: 50px;">
           <mat-radio-group [(ngModel)]="selectedValue" (change)="selectionChanged()">
             <mat-radio-button *ngFor="let item of toggleOptions" [value]="item" style="margin-right: 2.5em">
@@ -70,9 +64,6 @@
             <span>Email </span>
           </div>
           <div class="col">
-            <span>Profile </span>
-          </div>
-          <div class="col">
             <span>Actions </span>
           </div>
         </div>
@@ -93,12 +84,6 @@
           </div>
           <div class="col operation">
             <span>{{ s.userEmail }} </span>
-          </div>
-          <div class="col operation">
-            <span>{{
-                s.userProfile != null ? s.userProfile.profileDescription : ""
-              }}
-            </span>
           </div>
           <div class="col">
             <button mat-button color="warn" (click)="openDialog('edit', s)">

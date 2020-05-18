@@ -4,7 +4,7 @@ import { MatDialog } from "@angular/material";
 import { AddUserComponent } from "../add-user/add-user.component";
 import { UserService } from '../user.service';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
-import { User, Profile } from '../interfaces';
+import { User, Role } from '../interfaces';
 
 @Component({
   selector: "app-user-list",
@@ -55,14 +55,14 @@ export class UserListComponent implements OnInit {
 
   openDialog(operation: string, user: User) {
     if (operation == 'add') {
-      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true, userProfile: null };
+      user = { userFirstName: "", userLastName: "", userEmail: "", userUserName: "", userActive: true, userRoles: null };
     }
 
     var dialogRef = this.dialog.open(AddUserComponent, {
       width: "800px",
       data: {
         dialogUser: user,
-        operation: operation
+        dialogOperation: operation
       },
       disableClose: true
     });

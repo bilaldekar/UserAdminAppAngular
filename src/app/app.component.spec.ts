@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user/user-list.component';
+import { UserListComponent } from './user-list/user-list.component';
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { MatPaginatorModule, MatDialog } from '@angular/material';
 import { NgxPaginationModule } from 'ngx-pagination';

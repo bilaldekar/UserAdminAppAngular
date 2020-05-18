@@ -6,11 +6,12 @@ export interface User {
     userUserName: string;
     userEmail: string;
     userActive: boolean;
-    userProfile? : Profile;
+    userRoles? : Role[];
 }
 
 
-export interface Profile {
-    profileId?: number;
-    profileDescription: string;
+export interface Role {
+    roleId?: number;
+    roleDescription: string;
+    state?: boolean;
 }

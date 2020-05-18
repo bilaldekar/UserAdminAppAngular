@@ -1,0 +1,21 @@
+<h1 mat-dialog-title style="color: darkslategray">Select Roles</h1>
+
+<div class="container-fluid body">
+  <mat-chip-list [selectable]="selectable" [multiple]="true">
+    <mat-chip *ngFor="let ur of allRoles" [selected]="ur.state" (click)="changeSelected(ur)">      
+      {{ur.roleDescription}}
+    </mat-chip>
+  </mat-chip-list>
+  
+  <div class="emptyResult">
+    <span *ngIf="allRoles.length == 0">
+      No roles to add.
+    </span>
+  </div>
+
+  <div class="row btnAdd">
+    <button mat-raised-button [mat-dialog-close]="data.selectedRole" color="primary" style="margin-left: 5px;">
+      <mat-icon>done</mat-icon> Finish
+    </button>
+  </div>
+</div>

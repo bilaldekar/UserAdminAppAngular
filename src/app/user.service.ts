@@ -33,4 +33,8 @@ export class UserService {
         return this.httpClient.get(this.envUrl + '/profile');
     }
 
+
+    getRoles() {
+        return this.httpClient.get(this.envUrl + '/roles/all/');
+    }
 }

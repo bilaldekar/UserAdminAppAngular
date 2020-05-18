@@ -13,3 +13,49 @@
     margin: 20px;
     float: right;
   }
+
+  
+.tableHeader {
+  padding: 0px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-color: #2196f3;
+  color: white;
+  font-weight: bold;
+}
+
+.tableRow {
+  margin: 1px;
+  padding: 0px;
+  border-bottom: black;
+}
+
+.tableDiv {
+  height: 200px;
+  position: relative;
+  border: 1px solid lavender;
+}
+.redClass{
+  background-color: red;
+}
+
+.operation {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.paginator {
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 300px;
+  left: 50%;
+  right: 25px;
+  margin-left: -150px;
+}
+
+.emptyResult {
+  margin: 20px;
+  color: darkgray;
+}

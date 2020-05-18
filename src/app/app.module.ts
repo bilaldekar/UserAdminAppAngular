@@ -3,9 +3,9 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { UserListComponent } from "./user/user-list.component";
+import { UserListComponent } from "./user-list/user-list.component";
 
-import { MatCardModule, MatPaginatorModule, MatIconModule, MatToolbarModule, MatTableModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatGridListModule, MatTabsModule, MatButtonToggleModule, MatRadioModule, MatSelectModule } from "@angular/material";
+import { MatCardModule, MatPaginatorModule, MatIconModule, MatToolbarModule, MatTableModule, MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatGridListModule, MatTabsModule, MatButtonToggleModule, MatRadioModule, MatSelectModule, MatChipsModule } from "@angular/material";
 import { NgxPaginationModule } from "ngx-pagination";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
@@ -14,9 +14,10 @@ import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
 import { CommonModule } from '@angular/common';
+import { RolesDialog } from './roles-dialog/roles.dialog';
 
 @NgModule({
-  declarations: [AppComponent, UserListComponent, AddUserComponent, ConfirmDialog],
+  declarations: [AppComponent, UserListComponent, AddUserComponent, ConfirmDialog, RolesDialog],
   imports: [
     CommonModule,
     BrowserModule,
@@ -39,10 +40,11 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MatButtonToggleModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule    
   ],
   providers: [UserService],
   bootstrap: [AppComponent],
-  entryComponents: [AddUserComponent, ConfirmDialog]
+  entryComponents: [AddUserComponent, ConfirmDialog, RolesDialog]
 })
 export class AppModule {}

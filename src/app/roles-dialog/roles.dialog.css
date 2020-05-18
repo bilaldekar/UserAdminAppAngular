@@ -1,0 +1,12 @@
+
+.btnAdd {
+    margin: 20px;
+    margin-right: 0px;
+    float: right;
+  }
+
+  
+.emptyResult {
+  margin: 20px;
+  color: darkgray;
+}
