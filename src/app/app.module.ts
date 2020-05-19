@@ -10,7 +10,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { UserService } from './user.service';
+import { UserService } from './shared/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
 import { CommonModule } from '@angular/common';

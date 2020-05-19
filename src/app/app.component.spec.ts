@@ -5,7 +5,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 import { MatPaginatorModule, MatDialog } from '@angular/material';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { UserService } from './user.service';
+import { UserService } from './shared/user.service';
 
 describe('AppComponent', () => {
   

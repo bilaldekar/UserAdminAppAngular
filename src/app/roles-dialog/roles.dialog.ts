@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Role } from '../interfaces';
-import { UserService } from '../user.service';
+import { Role } from '../shared/interfaces';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: "roles.dialog",

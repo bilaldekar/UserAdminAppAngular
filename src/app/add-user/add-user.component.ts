@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject, ViewChild } from "@angular/core";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material";
-import { UserService } from '../user.service';
-import { User, Role } from '../interfaces';
+import { UserService } from '../shared/user.service';
+import { User, Role } from '../shared/interfaces';
 import { RolesDialog } from '../roles-dialog/roles.dialog';
 
 @Component({

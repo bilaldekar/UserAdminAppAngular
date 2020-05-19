@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
 
 import { AddUserComponent } from "../add-user/add-user.component";
-import { UserService } from '../user.service';
+import { UserService } from '../shared/user.service';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
-import { User, Role } from '../interfaces';
+import { User, Role } from '../shared/interfaces';
 
 @Component({
   selector: "app-user-list",

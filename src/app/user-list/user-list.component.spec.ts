@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from "@angular/core/testing"
 import { UserListComponent } from './user-list.component'
 import { NO_ERRORS_SCHEMA, Component } from "@angular/core";
-import { UserService } from '../user.service';
+import { UserService } from '../shared/user.service';
 import { MatDialog, MatCardModule, MatPaginatorModule } from '@angular/material';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { of } from 'rxjs';
