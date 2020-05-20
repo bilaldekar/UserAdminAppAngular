@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit {
       this.firstName == '' ? null : this.firstName,
       this.lastName == '' ? null : this.lastName,
       this.userName == '' ? null : this.userName,
-      this.email == '' ? null : this.email )
+      this.email == '' ? null : this.email)
       .subscribe((res: User[]) => {
         if (res) {
           this.user_list = res;
@@ -85,13 +85,12 @@ export class UserListComponent implements OnInit {
       if (result != null) {
         user.userActive = result.active;
 
-        this.userService.editUser(user).subscribe((editResult) => {
-          if (editResult) {
-            this.user_list = this.user_list.filter(item => item.userId != (<User>editResult).userId);
-          }
-        }, (err) => {
-          alert('Faild to desactivate user');
-        });
+        this.userService.editUser(user).subscribe(
+          (result: void) => {
+            this.user_list = this.user_list.filter(item => item.userId != user.userId);
+          }, (err) => {
+            alert('Faild to deactivate user');
+          });
       }
     })
   }

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Role } from '../shared/interfaces';
 import { UserService } from '../shared/user.service';
+import { RoleService } from '../shared/role.service';
 
 @Component({
   selector: "roles.dialog",
@@ -17,6 +18,7 @@ export class RolesDialog implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<RolesDialog>,
     private userService: UserService,
+    private roleService: RoleService,
     @Inject(MAT_DIALOG_DATA)
     public data: {
       userRoles: Role[];
@@ -25,23 +27,12 @@ export class RolesDialog implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getRoles().subscribe((res: Role[]) => {
+    this.roleService.getRoles().subscribe((res: Role[]) => {
       if (res) {
         this.allRoles = res;
-
-        console.log('all ----> ' + this.allRoles.length);
-        console.log('userRoles ----> ' + this.data.userRoles.length);
-
         this.data.userRoles.forEach(element => {
-          console.log('--------->>> ' +element.roleId );
           this.allRoles = this.allRoles.filter(item => item.roleId !== element.roleId);
-
-          /*const index = this.allRoles.indexOf(element);
-          if (index >= 0) {
-            this.allRoles.splice(index, 1);
-          };*/
         });
-        console.log('----> ' + this.allRoles.length);
       }
     }, (err) => {
       alert('Faild to load data');
@@ -71,14 +62,8 @@ export class RolesDialog implements OnInit {
   }
 
   close() {
-    /////////
-    /////////
-
     this.data.selectedRole.forEach(element => {
       console.log('finale state : ' + element.roleDescription + element.state);
     });
-
-    /////////
-    /////////
   }
 }

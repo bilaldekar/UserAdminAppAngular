@@ -11,10 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddUserComponent } from './add-user/add-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserService } from './shared/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConfirmDialog } from './confirm-dialog/confirm-dialog';
 import { CommonModule } from '@angular/common';
 import { RolesDialog } from './roles-dialog/roles.dialog';
+import { RoleService } from './shared/role.service';
+import { AddHeaderInterceptor } from './shared/add.header.interceptor';
+import { HttpCacheService } from './shared/http-cache.service';
+import { HttpCacheInterceptor } from './shared/http-cache.interceptor';
+import { LogResponseInterceptor } from './shared/log-response.interceptor';
 
 @NgModule({
   declarations: [AppComponent, UserListComponent, AddUserComponent, ConfirmDialog, RolesDialog],
@@ -43,7 +48,15 @@ import { RolesDialog } from './roles-dialog/roles.dialog';
     MatSelectModule,
     MatChipsModule    
   ],
-  providers: [UserService],
+  providers: [
+    UserService, 
+    RoleService, 
+    HttpCacheService,
+    {provide : HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true},
+    {provide : HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true},
+    {provide : HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true}
+
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddUserComponent, ConfirmDialog, RolesDialog]
 })

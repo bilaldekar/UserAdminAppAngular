@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -13,28 +13,20 @@ export class UserService {
         this.envUrl = environment.apiUrl;
     }
 
-    getUsers(active: boolean, firstName: String, lastname: String, userName: String, email: String): Observable<object>  {
-        return this.httpClient.get(this.envUrl + '/users/all/' + active + "/" + firstName + "/" + lastname + "/" + userName + "/" + email);
+    getUsers(active: boolean, firstName: String, lastname: String, userName: String, email: String): Observable<User[]> {
+        return this.httpClient.get<User[]>(this.envUrl + '/users/all/' + active + "/" + firstName + "/" + lastname + "/" + userName + "/" + email);
     }
 
-    addUser(user: User): Observable<object> {
-        return this.httpClient.post(this.envUrl + '/users/save', user);
+    addUser(user: User): Observable<User> {
+        return this.httpClient.post<User>(this.envUrl + '/users/save', user);
     }
 
-    editUser(user: User): Observable<object> {
-        return this.httpClient.put(this.envUrl + '/users/edit/' + user.userId, user);
+    editUser(user: User): Observable<void> {
+        return this.httpClient.put<void>(this.envUrl + '/users/edit/' + user.userId, user);
     }
 
-    getUser(id: number) {
-        return this.httpClient.get(this.envUrl + '/users/' + id);
+    getUser(id: number): Observable<User> {
+        return this.httpClient.get<User>(this.envUrl + '/users/' + id);
     }
 
-    getProfiles() {
-        return this.httpClient.get(this.envUrl + '/profile');
-    }
-
-
-    getRoles() {
-        return this.httpClient.get(this.envUrl + '/roles/all/');
-    }
 }

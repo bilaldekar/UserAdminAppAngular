@@ -57,14 +57,16 @@ export class AddUserComponent implements OnInit {
         userRoles: this.userRoles
       };
 
-      this.userService.addUser(newUser).subscribe((result: any) => {
-        if (result) {
-          this.added = true;
-          this.removable = false;
-        }
-      }, (err) => {
-        alert('Faild to add user');
-      });
+      this.userService.addUser(newUser).subscribe(
+        (result: User) => {
+          if (result.userId != null) {
+            this.added = true;
+            this.removable = false;
+          }
+        },
+        (err) => {
+          alert('Faild to add user');
+        });
     }
 
     if (this.data.dialogOperation == 'edit') {
@@ -78,12 +80,11 @@ export class AddUserComponent implements OnInit {
         userRoles: this.userRoles
       };
 
-      this.userService.editUser(editUser).subscribe((editResult) => {
-        if (editResult) {
+      this.userService.editUser(editUser).subscribe(
+        (result: void) => {
           this.added = true;
           this.removable = false;
-        }
-      },
+        },
         (err) => {
           alert('Faild to edit user');
         });
@@ -118,12 +119,11 @@ export class AddUserComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe((result: Role[]) => {
-      if (result != null) {
-        this.userRoles = this.userRoles.concat(result); 
-      } else {
-        console.log('result null');
-      }
-    });
+    dialogRef.afterClosed().subscribe(
+      (result: Role[]) => {
+        if (result != null) {
+          this.userRoles = this.userRoles.concat(result);
+        } 
+      });
   }
 }
