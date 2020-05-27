@@ -20,6 +20,10 @@ import { AddHeaderInterceptor } from './shared/add.header.interceptor';
 import { HttpCacheService } from './shared/http-cache.service';
 import { HttpCacheInterceptor } from './shared/http-cache.interceptor';
 import { LogResponseInterceptor } from './shared/log-response.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './state/user.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, UserListComponent, AddUserComponent, ConfirmDialog, RolesDialog],
@@ -46,18 +50,25 @@ import { LogResponseInterceptor } from './shared/log-response.interceptor';
     MatButtonToggleModule,
     MatRadioModule,
     MatSelectModule,
-    MatChipsModule    
+    MatChipsModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('users', reducer),
+    StoreDevtoolsModule.instrument({
+      name: 'dev tools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [
-    UserService, 
-    RoleService, 
+    UserService,
+    RoleService,
     HttpCacheService,
-    {provide : HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true},
-    {provide : HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true},
-    {provide : HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true }
 
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddUserComponent, ConfirmDialog, RolesDialog]
 })
-export class AppModule {}
+export class AppModule { }

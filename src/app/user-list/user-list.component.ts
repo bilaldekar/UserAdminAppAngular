@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material";
-
 import { AddUserComponent } from "../add-user/add-user.component";
 import { UserService } from '../shared/user.service';
 import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
-import { User, Role } from '../shared/interfaces';
+import { User } from '../shared/interfaces';
+import { Store, select } from '@ngrx/store';
+import * as userState from '../state/user.reducer'
+import * as userActions from '../state/user.actions'
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: "app-user-list",
@@ -17,21 +20,31 @@ export class UserListComponent implements OnInit {
   page: number = 1;
 
   title = 'button-toggle-app';
-  selectedValue: String = "Active";
-  toggleOptions: Array<String> = ["Active", "Desactive"];
+  selectedValue: string = "Active";
+  toggleOptions: Array<string> = ["Active", "Desactive"];
 
   firstName: String = null;
   lastName: String = null;
   userName: String = null;
   email: String = null;
 
+  componentActive = true;
+
   selectionChanged() {
     this.filter();
   }
 
-  constructor(public dialog: MatDialog, private userService: UserService) { }
+  constructor(public dialog: MatDialog,
+    private userService: UserService,
+    private store: Store<userState.State>) { }
 
   ngOnInit() {
+    this.store.pipe(select(userState.getFilterBy), takeWhile(() => this.componentActive)).subscribe(
+      filterBy => {
+        this.selectedValue = filterBy;
+      }
+    )
+
     this.filter();
   }
 
@@ -51,6 +64,8 @@ export class UserListComponent implements OnInit {
         alert('Faild to load data');
         this.user_list = [];
       });
+
+    this.store.dispatch(new userActions.FilterBy(this.selectedValue));
   }
 
   openDialog(operation: string, user: User) {
@@ -93,5 +108,9 @@ export class UserListComponent implements OnInit {
           });
       }
     })
+  }
+
+  ngOnDestroy() {
+    this.componentActive = false;
   }
 }
