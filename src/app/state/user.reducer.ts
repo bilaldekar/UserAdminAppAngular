@@ -47,7 +47,7 @@ export function reducer(state = initialState, action: UserActions): UserState {
         case UserActionTypes.InitializeCurrentUser:
             return {
                 ...state,
-                currentUser: { userId: 0, userFirstName: '', userLastName: '', userUserName: '', userEmail: '', userActive: true, userRoles: null }
+                currentUser: { id: 0, firstName: '', lastName: '', userName: '', email: '', active: true, roles: null }
             }
         default: return state;
     }

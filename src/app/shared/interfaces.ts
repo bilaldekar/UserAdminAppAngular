@@ -1,12 +1,12 @@
 
 export interface User {
-    userId?: number;
-    userFirstName: string;
-    userLastName: string;
-    userUserName: string;
-    userEmail: string;
-    userActive: boolean;
-    userRoles? : Role[];
+    id?: number;
+    firstName: string;
+    lastName: string;
+    userName: string;
+    email: string;
+    active: boolean;
+    roles? : Role[];
 }
 
 

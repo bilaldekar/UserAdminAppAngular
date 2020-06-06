@@ -22,7 +22,7 @@ export class UserService {
     }
 
     editUser(user: User): Observable<void> {
-        return this.httpClient.put<void>(this.envUrl + '/users/edit/' + user.userId, user);
+        return this.httpClient.put<void>(this.envUrl + '/users/edit/' + user.id, user);
     }
 
     getUser(id: number): Observable<User> {
