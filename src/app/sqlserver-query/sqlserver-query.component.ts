@@ -10,25 +10,18 @@ export class SqlserverQueryComponent implements OnInit {
 
   param1: string;
   param2: string;
-  //parametersList: Parameter[];
-
-  //public parametersList: { parmName: string, paramValue: string }[] = parameters;
 
   constructor(private queryService: QueryService) { }
 
   ngOnInit() {
-    //this.param1 =  this.parametersList[0].paramValue;
-
-    //console.log('----------> ' +  parameters("param1") );
 
     this.queryService.getParameters()
       .subscribe((res: any) => {
+        this.param1 = res.param1;
+        this.param2 = res.param2;
 
-        parseObject(res);
-
-        //this.parametersList = res;
-        console.log(res);
-        console.log(res['param1']);
+        console.log(res.param2);
+        console.log(res.param1);
       }, (err) => {
         alert('Faild to load data');
       });

@@ -35,6 +35,7 @@ import {PanelModule} from 'primeng/panel';
 import {InputTextModule} from 'primeng/inputtext';
 import {TableModule} from 'primeng/table';
 import { QueryService } from './sqlserver-query/sqlserver-query.service';
+import { OperationsComponent } from './operations/operations.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { QueryService } from './sqlserver-query/sqlserver-query.service';
     LoginComponent, 
     WelcomeComponent,
     MenuComponent,
-    SqlserverQueryComponent
+    SqlserverQueryComponent,
+    OperationsComponent
   ],
   imports: [
     CommonModule,
